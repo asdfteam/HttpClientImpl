@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace HttpClient
+namespace HttpClientImpl
 {
-    using System.Net.Http;
     public class HttpClientImpl
     {
         public HttpClient Client { get; }

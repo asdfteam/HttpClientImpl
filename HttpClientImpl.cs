@@ -22,7 +22,7 @@ namespace HttpClientImpl
             return response;
         }
 
-        public async Task<HttpResponseMessage> Put(string uri, string body, Dictionary<string, string> headers = null)
+        public async Task<HttpResponseMessage> Put(string uri, string body = null, Dictionary<string, string> headers = null)
         {
             var request = new HttpRequestMessage(HttpMethod.Put, uri) {Content = new StringContent(body)};
             

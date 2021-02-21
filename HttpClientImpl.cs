@@ -24,7 +24,10 @@ namespace HttpClientImpl
 
         public async Task<HttpResponseMessage> Put(string uri, string body = null, Dictionary<string, string> headers = null)
         {
-            var request = new HttpRequestMessage(HttpMethod.Put, uri) {Content = new StringContent(body)};
+            var request = new HttpRequestMessage(HttpMethod.Put, uri)
+            {
+                Content = new StringContent(body ?? string.Empty)
+            };
             
             HandleHeaders(request, headers);
 
@@ -34,7 +37,7 @@ namespace HttpClientImpl
 
         public async Task<HttpResponseMessage> Post(string uri, string body, Dictionary<string, string> headers = null)
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, uri) {Content = new StringContent(body)};
+            var request = new HttpRequestMessage(HttpMethod.Post, uri) {Content = new StringContent(body ?? string.Empty)};
             
             HandleHeaders(request, headers);
 

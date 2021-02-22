@@ -4,7 +4,16 @@ using System.Threading.Tasks;
 
 namespace HttpClientImpl
 {
-    public class HttpClientImpl
+    public interface IHttpClientImpl
+    { 
+        Task<HttpResponseMessage> Get(string uri, Dictionary<string, string> headers = null);
+        Task<HttpResponseMessage> Put(string uri, string body = null, Dictionary<string, string> headers = null);
+        Task<HttpResponseMessage> Post(string uri, string body, Dictionary<string, string> headers = null);
+        Task<HttpResponseMessage> Delete(string uri, Dictionary<string, string> headers = null);
+
+    }
+
+    public class HttpClientImpl : IHttpClientImpl
     {
         public HttpClient Client { get; }
         public HttpClientImpl(HttpClient client)

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace HttpClientImpl
@@ -10,6 +11,8 @@ namespace HttpClientImpl
         Task<HttpResponseMessage> Put(string uri, string body = null, Dictionary<string, string> headers = null);
         Task<HttpResponseMessage> Post(string uri, string body, Dictionary<string, string> headers = null);
         Task<HttpResponseMessage> Delete(string uri, Dictionary<string, string> headers = null);
+
+        void HandleHeaders(HttpRequestMessage request, Dictionary<string, string> headers);
 
     }
 
@@ -64,8 +67,12 @@ namespace HttpClientImpl
             return response;
         }
 
-        private static void HandleHeaders(HttpRequestMessage request, Dictionary<string, string> headers)
+        public void HandleHeaders(HttpRequestMessage request, Dictionary<string, string> headers)
         {
+            if (request.Method.Equals(HttpMethod.Post))
+            {
+                request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            }
             if (headers == null || headers.Count == 0) return;
             foreach (var keyValuePair in headers)
             {

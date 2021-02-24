@@ -28,7 +28,10 @@ namespace HttpClientImpl
         {
             var request = new HttpRequestMessage(HttpMethod.Get, uri);
 
-            HandleHeaders(request, headers);
+            if (headers != null)
+            {
+                HandleHeaders(request, headers);
+            }
 
             var response = await Client.SendAsync(request);
             return response;
@@ -41,7 +44,10 @@ namespace HttpClientImpl
                 Content = new StringContent(body ?? string.Empty)
             };
             
-            HandleHeaders(request, headers);
+            if (headers != null)
+            {
+                HandleHeaders(request, headers);
+            }
 
             var response = await Client.SendAsync(request);
             return response;
@@ -61,7 +67,10 @@ namespace HttpClientImpl
         {
             var request = new HttpRequestMessage(HttpMethod.Delete, uri);
 
-            HandleHeaders(request, headers);
+            if (headers != null)
+            {
+                HandleHeaders(request, headers);
+            }
 
             var response = await Client.SendAsync(request);
             return response;
